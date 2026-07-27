@@ -96,6 +96,10 @@ jobs:
       GERRIT_PROJECT: ${{ inputs.GERRIT_PROJECT }}
       GERRIT_REFSPEC: ${{ inputs.GERRIT_REFSPEC }}
       TARGET_REPO: ${{ inputs.TARGET_REPO }}
+    secrets:
+      # Many Gerrit-replicated lfit repositories are private, and the
+      # calling repository's GITHUB_TOKEN cannot read them.
+      token: ${{ secrets.REPLICATION_TOKEN }}
 
   vote:
     name: Set change isolation vote
